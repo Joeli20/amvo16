@@ -1,30 +1,29 @@
-function print_field(field,label,format)
+function print_field(u,label,format)
+% Written by: Joel Campo, Jordi Gallart, Martí Santamaria, 2023
+% Group 16
+% print_field prints a field with the notation described in slide 18
+% Inputs:
+    % u: field to print
+    % label: string with a descritpion
+    % format: fprintf format
+% Outputs:
+    % prints the desired field
+% Example of use: print_field(up,'predictor vel. u','%+.3e  ');
 
-% prints a generic 2d matrix in the order we are using for velocity 
-% components and pressure, respecting our conventions for the halo.
-
-% GRUP 16
-
-% Input:
-%   field: Field to print
-%   label: String with a description; Default value: 
-%   format: fprintf format; Default value: '
-
-% if isempty(label)
-%     label = '';
-% end
-% if isempty(format)
-%     format = '%+.3e';
-% end
-
-N = size(field,1)-2; % Mesh size
-fprintf('field %s \n',label);
-
-for j = N+2:-1:1
-    fprintf('j=%2d ',j);
-    for i = 1:N+2
-        fprintf(format, field(i,j));
-    end
-    fprintf('\n');
+% We check that the arguments are valid
+N = size(u,1)-2; % nº of cells along the hor. axis of the mesh
+N2 = size(u,2)-2; % nº of cells along the ver. axis of the mesh
+if (N2 ~= N) % we want the mesh to be squared
+    error('The matrix is not square')
 end
+% Now we can obtain the field
+fprintf('field %s \n',label);
+for j = N+2:-1:1 % we loop for j from N+2 to 1, descending
+    fprintf('j =%2d ',j);
+    for i = 1:N+2 % then loop in the horizontal direction, left to right
+        fprintf(format,u(i,j));
+    end
+    fprintf('\n'); % change of line
+end
+
 end
