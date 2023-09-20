@@ -19,17 +19,19 @@ v_field = zeros(N+2);
 u = matlabFunction(u,'Vars',[x y]) ;
 v = matlabFunction(v,'Vars',[x y]) ;
 
+delta = L/N;
 
 for i = 2:N+1
     for j = 2:N+1
 
-        xu = (i-1) * L/N;
-        yu = (j-1) * L/N - L/(2*N);
-        xv = (i-1) * L/N - L/(2*N);
-        yv = (j-1) * L/N;
+        xu = (i-1) * delta;
+        yu = (j-1) * delta - delta/2;
+        xv = (i-1) * delta - delta/2;
+        yv = (j-1) * delta;
         
         u_field(i,j) = u(xu,yu);
         v_field(i,j) = v(xv,yv);
     end
 end
+
 end
