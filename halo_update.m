@@ -1,8 +1,9 @@
 function u = halo_update(u)
-% Written by: Joel Campo, Jordi Gallart, Martí Santamaria, 2023
-% Group 16
-
 % halo_update updates the halo values
+
+% Written by: Joel Campo, Jordi Gallart, Martí Santamaria, 2023
+% Group 16. AMVO. MUEA.
+
 % Inputs:
     % u: Field to be updated
 % Outputs:

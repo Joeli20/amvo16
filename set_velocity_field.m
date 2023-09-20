@@ -1,14 +1,17 @@
 function [u_field,v_field] = set_velocity_field(N,L,u,v)
-% Written by: Joel Campo, Jordi Gallart, Martí Santamaria, 2023
-% Group 16
-
 % set_velocity_field creates a field with an analytic velocity distribution
+
+% Written by: Joel Campo, Jordi Gallart, Martí Santamaria, 2023
+% Group 16. AMVO. MUEA.
+
 % Inputs:
-    % N: number of cells along one axis of the square mesh
+    % N: number of cells of one axis of the square mesh
     % L: length of a side of the analysed square
     % u,v: symbolic functions to be transformed into a field
 % Outputs:
-    % u_out,v_out: fields obtained from the symbolic functions 
+    % u_out,v_out: fields obtained from the symbolic functions
+
+syms x y
 
 u_field = zeros(N+2);
 v_field = zeros(N+2);
@@ -29,7 +32,4 @@ for i = 2:N+1
         v_field(i,j) = v(xv,yv);
     end
 end
-
-disp(u_field);
-disp(v_field);
 end
