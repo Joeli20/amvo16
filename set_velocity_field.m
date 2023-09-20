@@ -1,4 +1,4 @@
-function [u,v] = set_velocity_field(N,L)
+function [u_field,v_field] = set_velocity_field(N,L,u,v)
 % Written by: Joel Campo, Jordi Gallart, Martí Santamaria, 2023
 % Group 16
 
@@ -6,22 +6,30 @@ function [u,v] = set_velocity_field(N,L)
 % Inputs:
     % N: number of cells along one axis of the square mesh
     % L: length of a side of the analysed square
+    % u,v: symbolic functions to be transformed into a field
 % Outputs:
-    % u,v: fields obtained from the symbolic functions 
+    % u_out,v_out: fields obtained from the symbolic functions 
 
-u = zeros(N+2);
-v = zeros(N+2);
+u_field = zeros(N+2);
+v_field = zeros(N+2);
 
-x = L/N;
-y = L/N; %square
+u = matlabFunction(u,'Vars',[x y]) ;
+v = matlabFunction(v,'Vars',[x y]) ;
+
 
 for i = 2:N+1
     for j = 2:N+1
-        u(i,j) = sin(x*(i-1));
-        v(i,j) = cos(y*(j-1));
+
+        xu = (i-1) * L/N;
+        yu = (j-1) * L/N - L/(2*N);
+        xv = (i-1) * L/N - L/(2*N);
+        yv = (j-1) * L/N;
+        
+        u_field(i,j) = u(xu,yu);
+        v_field(i,j) = v(xv,yv);
     end
 end
 
-disp(u);
-disp(v);
+disp(u_field);
+disp(v_field);
 end
