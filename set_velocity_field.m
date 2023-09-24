@@ -9,7 +9,7 @@ function [u_field,v_field] = set_velocity_field(N,L,u,v)
     % L: length of a side of the analysed square
     % u,v: symbolic functions to be transformed into a field
 % Outputs:
-    % u_out,v_out: fields obtained from the symbolic functions
+    % u_field,v_field: fields obtained from the symbolic functions
 
 syms x y
 

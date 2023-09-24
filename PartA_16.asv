@@ -11,7 +11,6 @@ L = 1;
 N = 3;
 f_u = sin(x)*cos(y);
 f_v = cos(x)*sin(y);
-h = L/N;
 
 % Velocity field
 [u,v] = set_velocity_field(N,L,f_u,f_v);
@@ -24,7 +23,7 @@ v = halo_update(v);
 % convective
 u_conv = diff(f_u*f_u,x)+diff(f_u*f_v,y);
 v_conv = diff(f_v*f_u,x)+diff(f_v*f_v,y);
-% diffusive
+%diffusive
 du_dx = diff(diff(f_u,x),x); % d^2(u)/dx^2
 du_dy = diff(diff(f_u,y),y); % d^2(u)/dv^2
 dv_dx = diff(diff(f_v,x),x); % d^2(v)/dx^2
@@ -34,17 +33,10 @@ v_diff = dv_dx + dv_dy;
 
 [f_u_conv,f_v_conv] = set_velocity_field(N,L,u_conv,v_conv);
 [f_u_diff,f_v_diff] = set_velocity_field(N,L,u_diff,v_diff);
-% solution
+% Solution
 [u_conv_an,v_conv_an] = convective(f_u_conv,f_v_conv,L);
 [u_diff_an,v_diff_an] = diffusive(f_u_diff,f_v_diff);
 
 % Numeric solution
 [u_conv_num,v_conv_num] = convective(u,v,L);
 [u_diff_num,v_diff_num] = diffusive(u,v);
-
-% Error
-[e_u_conv,e_v_conv,e_u_diff,e_v_diff] = d_error(N,L,h,u_conv_an, ...
-    v_conv_an,u_diff_an,v_diff_an,u_conv_num,v_conv_num,u_diff_num, ...
-    v_diff_num);
-
-% Plot error

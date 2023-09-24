@@ -1,4 +1,4 @@
-function [u_conv,v_conv] = convective(u,v,L)
+function [u_conv_num,v_conv_num] = convective(u,v,L)
 % Integral of convective term, x and y components. L is the domain size.
 
 % Written by: Joel Campo, Jordi Gallart, Martí Santamaria, 2023
@@ -9,13 +9,13 @@ function [u_conv,v_conv] = convective(u,v,L)
     % v: Matrix of the vertical velocity components
     % L: length of a side of the analysed square
 % Outputs:
-    % u_conv: Solution of the convective terms of horitzontal velocity
-    % v_conv: Solution of the convective terms of vertical velocity
+    % u_conv_num: Solution of the convective terms of horitzontal velocity
+    % v_conv_num: Solution of the convective terms of vertical velocity
 
 N = size(u,1) - 2;
 
-u_conv = zeros(N+2,N+2);
-v_conv = zeros(N+2,N+2);
+u_conv_num = zeros(N+2,N+2);
+v_conv_num = zeros(N+2,N+2);
 
 delta = L/N;
 
@@ -45,8 +45,8 @@ for i = 2:N+1
         Fv_n = (v(i,j+1) + v(i,j))*delta/2;
         Fv_s = (v(i,j-1) + v(i,j))*delta/2;
 
-        u_conv(i,j) = u_e*Fu_e - u_w*Fu_w + u_n*Fu_n - u_s*Fu_s; %Diapo 11
-        v_conv(i,j) = v_e*Fv_e - v_w*Fv_w + v_n*Fv_n - v_s*Fv_s ;
+        u_conv_num(i,j) = u_e*Fu_e - u_w*Fu_w + u_n*Fu_n - u_s*Fu_s; %Diapo 11
+        v_conv_num(i,j) = v_e*Fv_e - v_w*Fv_w + v_n*Fv_n - v_s*Fv_s ;
     end
 end
 

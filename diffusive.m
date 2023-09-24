@@ -1,4 +1,4 @@
-function [u_diff,v_diff] = diffusive(u,v,L)
+function [u_diff_num,v_diff_num] = diffusive(u,v)
 % Integral of diffusive term, x and y components. L is the domain size.
 
 % Written by: Joel Campo, Jordi Gallart, Martí Santamaria, 2023
@@ -7,15 +7,14 @@ function [u_diff,v_diff] = diffusive(u,v,L)
 % Inputs:
     % u: Matrix of the horitzontal velocity components
     % v: Matrix of the vertical velocity components
-    % L: length of a side of the analysed square
 % Outputs:
-    % u_diff: Solution of the diffusive terms of horitzontal velocity
-    % v_diff: Solution of the diffusive terms of vertical velocity
+    % u_diff_num: Solution of the diffusive terms of horitzontal velocity
+    % v_diff_num: Solution of the diffusive terms of vertical velocity
 
 N = size(u,1) - 2;
 
-u_diff = zeros(N+2,N+2);
-v_diff = zeros(N+2,N+2);
+u_diff_num = zeros(N+2,N+2);
+v_diff_num = zeros(N+2,N+2);
 
 for i = 2:N+1
     for j = 2:N+1
@@ -34,8 +33,8 @@ for i = 2:N+1
         dv_n = v(i,j+1) - v(i,j);
         dv_s = v(i,j) - v(i,j-1);
 
-        u_diff(i,j) = du_e - du_w + du_n - du_s ; % diapo 16
-        v_diff(i,j) = dv_e - dv_w + dv_n - dv_s ;
+        u_diff_num(i,j) = du_e - du_w + du_n - du_s ; % diapo 16
+        v_diff_num(i,j) = dv_e - dv_w + dv_n - dv_s ;
     end 
 end 
 
