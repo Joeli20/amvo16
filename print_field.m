@@ -1,7 +1,9 @@
 function print_field(u,label,format)
-% Written by: Joel Campo, Jordi Gallart, Martí Santamaria, 2023
-% Group 16
 % print_field prints a field with the notation described in slide 18
+
+% Written by: Joel Campo, Jordi Gallart, Martí Santamaria, 2023
+% Group 16. AMVO. MUEA.
+
 % Inputs:
     % u: field to print
     % label: string with a descritpion
