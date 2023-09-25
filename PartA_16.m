@@ -21,16 +21,7 @@ u = halo_update(u);
 v = halo_update(v);
 
 % Analytic (Diapos 7-8)
-% convective
-u_conv = diff(f_u*f_u,x)+diff(f_u*f_v,y);
-v_conv = diff(f_v*f_u,x)+diff(f_v*f_v,y);
-% diffusive
-du_dx = diff(diff(f_u,x),x); % d^2(u)/dx^2
-du_dy = diff(diff(f_u,y),y); % d^2(u)/dv^2
-dv_dx = diff(diff(f_v,x),x); % d^2(v)/dx^2
-dv_dy = diff(diff(f_v,y),y); % d^2(v)/dv^2
-u_diff = du_dx + du_dy;
-v_diff = dv_dx + dv_dy;
+[u_conv,v_conv,u_diff,v_diff] = analytic(f_u,f_v,x,y);
 
 [f_u_conv,f_v_conv] = set_velocity_field(N,L,u_conv,v_conv);
 [f_u_diff,f_v_diff] = set_velocity_field(N,L,u_diff,v_diff);
