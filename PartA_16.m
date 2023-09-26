@@ -39,3 +39,5 @@ v = halo_update(v);
     v_diff_num);
 
 % Plot error
+plot_error(h,e_u_conv,e_u_diff)
+plot_error(h,e_v_conv,e_v_diff)

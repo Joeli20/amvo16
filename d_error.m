@@ -20,9 +20,9 @@ function [e_u_conv,e_v_conv,e_u_diff,e_v_diff] = d_error(N,L,h,u_conv_an, ...
 
 % Diapos 30-32
 
-e_u_conv = max((u_conv_an-u_conv_num)*h^2); % Busquem l'error màxim
-e_v_conv = max((v_conv_an-v_conv_num)*h^2);
-e_u_diff = max((u_diff_an-u_diff_num)*h^2);
-e_v_diff = max((v_diff_an-v_diff_num)*h^2);
+e_u_conv = max(max((u_conv_an-u_conv_num)*h^2)); % Busquem l'error màxim
+e_v_conv = max(max((v_conv_an-v_conv_num)*h^2));
+e_u_diff = max(max((u_diff_an-u_diff_num)*h^2));
+e_v_diff = max(max((v_diff_an-v_diff_num)*h^2));
 
 end
