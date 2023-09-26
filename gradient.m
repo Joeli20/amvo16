@@ -19,8 +19,8 @@ gy = zeros(N+2,N+2);
 
 for j = 2:N+1
     for i = 2:N+1
-        gx = (s(i+1,j) - s(i,j))/delta;
-        gy = (s(i+1,j) - s(i,j))/delta;
+        gx(i,j) = (s(i+1,j) - s(i,j))/delta;
+        gy(i,j) = (s(i,j+1) - s(i,j))/delta;
     end
 end
 
