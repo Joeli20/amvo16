@@ -11,6 +11,6 @@ function d = diverg(u,v)
 
 
 
+d = int(divergence(u,v,x,y));
 
-
-d = int(divergence());
+end
