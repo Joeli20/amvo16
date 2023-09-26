@@ -12,7 +12,7 @@ function plot_error(h,e_conv,e_diff)
     % Plot of the error vs h
 
 figure
-loglog(h,e_conv,Color='red',Marker='o')
+loglog(h,e_conv,Color='blue',Marker='o')
 hold on
-loglog(h,e_diff,Color='blue',Marker='o')
-loglog(h,h^2,Color='yellow',Marker='o')
+loglog(h,e_diff,Color='red',Marker='o')
+loglog(h,h.^2,Color='black')

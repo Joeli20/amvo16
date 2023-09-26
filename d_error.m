@@ -1,4 +1,4 @@
-function [e_u_conv,e_v_conv,e_u_diff,e_v_diff] = d_error(N,L,h,u_conv_an, ...
+function [e_u_conv,e_v_conv,e_u_diff,e_v_diff] = d_error(h,u_conv_an, ...
     v_conv_an,u_diff_an,v_diff_an,u_conv_num,v_conv_num,u_diff_num, ...
     v_diff_num)
 % set_velocity_field creates a field with an analytic velocity distribution
@@ -7,8 +7,7 @@ function [e_u_conv,e_v_conv,e_u_diff,e_v_diff] = d_error(N,L,h,u_conv_an, ...
 % Group 16. AMVO. MUEA.
 
 % Inputs:
-    % N: number of cells of one axis of the square mesh
-    % L: length of a side of the analysed square
+    % h: delta -> L/N
     % u_conv_an, v_conv_an, u_diff_an, v_diff_an: analytic solutions of the
     % convective and diffusive terms
     % u_conv_num, v_conv_num, u_diff_num, v_diff_num: numerical solutions

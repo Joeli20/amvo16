@@ -10,7 +10,7 @@ syms x y
 L = 1;
 f_u = sin(x)*cos(y);
 f_v = cos(x)*sin(y);
-n = [3,9,27,81];
+N = [3,9,27,81];
 
 for i = 1:4
 N = n(i);
@@ -37,13 +37,11 @@ v = halo_update(v);
 [u_diff_num,v_diff_num] = diffusive(u,v);
 
 % Error
-[e_u_conv(i),e_v_conv(i),e_u_diff(i),e_v_diff(i)] = d_error(h,u_conv_an, ...
+[e_u_conv(i),e_v_conv(i),e_u_diff(i),e_v_diff(i)] = d_error(N,L,h,u_conv_an, ...
     v_conv_an,u_diff_an,v_diff_an,u_conv_num,v_conv_num,u_diff_num, ...
     v_diff_num);
 
 end
-
-h = L./n;
 % Plot error
 plot_error(h,e_u_conv,e_u_diff)
 plot_error(h,e_v_conv,e_v_diff)

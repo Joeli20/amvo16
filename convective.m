@@ -1,5 +1,5 @@
 function [u_conv_num,v_conv_num] = convective(u,v,L)
-% Integral of convective term, x and y components. L is the domain size.
+% Integral of convective term, x and y components.
 
 % Written by: Joel Campo, Jordi Gallart, Martí Santamaria, 2023
 % Group 16. AMVO. MUEA.
@@ -47,6 +47,7 @@ for i = 2:N+1
 
         u_conv_num(i,j) = u_e*Fu_e - u_w*Fu_w + u_n*Fu_n - u_s*Fu_s; %Diapo 11
         v_conv_num(i,j) = v_e*Fv_e - v_w*Fv_w + v_n*Fv_n - v_s*Fv_s ;
+        
     end
 end
 
