@@ -14,8 +14,8 @@ function [u_conv,v_conv,u_diff,v_diff] = analytic(fnc_u,fnc_v,x,y)
 
 % Diapos 7-8
 % convective
-u_conv = diff(fnc_u,x)*fnc_u+diff(fnc_u,y)*fnc_v;
-v_conv = diff(fnc_v,x)*fnc_u+diff(fnc_v,y)*fnc_v;
+u_conv = diff(fnc_u*fnc_u,x)+diff(fnc_u*fnc_v,y);
+v_conv = diff(fnc_v*fnc_u,x)+diff(fnc_v*fnc_v,y);
 % diffusive
 du_dx = diff(diff(fnc_u,x),x); % d^2(u)/dx^2
 du_dy = diff(diff(fnc_u,y),y); % d^2(u)/dv^2
