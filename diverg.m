@@ -1,16 +1,26 @@
-function d = diverg(u,v)
+function d = diverg(u,v,L)
 % diverg gives the integral of the divergence
 
 % Written by: Joel Campo, Jordi Gallart, Martí Santamaria, 2023
 % Group 16. AMVO. MUEA.
 
 % Inputs:
-    % u,v: vector field (staggered) 
+    % u: Matrix of the horitzontal components
+    % v: Matrix of the vertical components
+    % L: length of a side of the analysed square
 % Outputs:
-    % d: scalar field
+    % d: Matrix of the divergence of u and v
 
+% Necessitem una matriu de divergències
 
+N = size(u,1)-2;
+h = L/N;
+d = zeros(N+2,N+2);
 
-d = int(divergence(u,v,x,y));
+for i = 2:N+1
+    for j = 2:N+1
+        d(i,j) = (u(i,j)-u(i-1,j)+v(i,j)-v(i,j-1))*h; % int(div(u,v))dh // div(u,v)=du/di+dv/dj
+    end
+end
 
 end
