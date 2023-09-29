@@ -1,5 +1,4 @@
 function [u_conv,v_conv,u_diff,v_diff] = analytic(fnc_u,fnc_v,x,y)
-
 % analytic calculates the analytic results
 
 % Written by: Joel Campo, Jordi Gallart, Martí Santamaria, 2023

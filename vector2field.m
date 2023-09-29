@@ -1,5 +1,4 @@
 function [d] = vector2field(b)
-
 % gradient calculates the gradient of the input scalar field.
 
 % Written by: Joel Campo, Jordi Gallart, Martí Santamaria, 2023

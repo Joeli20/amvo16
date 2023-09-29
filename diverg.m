@@ -11,8 +11,6 @@ function d = diverg(u,v,L)
 % Outputs:
     % d: Matrix of the divergence of u and v
 
-% Necessitem una matriu de divergències
-
 N = size(u,1)-2;
 h = L/N;
 d = zeros(N+2,N+2);
