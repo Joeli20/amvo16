@@ -1,16 +1,19 @@
 function A = laplacianMatrix(N)
-% laplacianMatrix 
+% laplacianMatrix computes the Laplacian matrix given the dimension N
 
 % Written by: Joel Campo, Jordi Gallart, Martí Santamaria, 2023
 % Group 16. AMVO. MUEA.
 
 % Inputs:
-    % N: 
+    % N: Number of cells of one axis of the square mesh
 % Outputs:
-    % A: 
+    % A: Laplacian matrix
+
+% Diapos 46-47
+
+A = zeros(N^2,N^2);
 
 
 
 
 
-% Diapos 39,42
