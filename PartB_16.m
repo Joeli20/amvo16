@@ -33,7 +33,7 @@ Vector_U = field2vector(Div_U);
 
 Laplace = laplacianMatrix(N);
 
-P_vector = Laplace.\Vector_U;
+P_vector = Laplace^(-1).*Vector_U; % Laplace.\Vector_U
 
 %Then vector to field in order to have the new P
 
