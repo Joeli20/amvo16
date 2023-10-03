@@ -1,16 +1,17 @@
 function print_field(u,label,format)
 % print_field prints a field with the notation described in slide 18
-
+%
 % Written by: Joel Campo, Jordi Gallart, Martí Santamaria, 2023
 % Group 16. AMVO. MUEA.
-
+%
 % Inputs:
-    % u: field to print
-    % label: string with a descritpion
-    % format: fprintf format
+%   u: field to print
+%   label: string with a descritpion
+%   format: fprintf format
 % Outputs:
-    % prints the desired field
-% Example of use: print_field(up,'predictor vel. u','%+.3e  ');
+%   prints the desired field
+%
+% Example of use: print_field(up,'predictor vel. u','%+.3e');
 
 % We check that the arguments are valid
 N = size(u,1)-2; % nº of cells along the hor. axis of the mesh

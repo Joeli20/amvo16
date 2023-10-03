@@ -1,13 +1,13 @@
 function [d] = vector2field(b)
-% gradient calculates the gradient of the input scalar field.
-
+% vector2field transforms the vector into a matrix
+%
 % Written by: Joel Campo, Jordi Gallart, Martí Santamaria, 2023
 % Group 16. AMVO. MUEA.
-
+%
 % Inputs:
-    % b: algebraic vector b(N*N)
+%   b: algebraic vector b(N*N)
 % Outputs:
-    % d: scalar field d(N+2,N+2)
+%   d: scalar field d(N+2,N+2)
 
 N = sqrt(length(b));
 

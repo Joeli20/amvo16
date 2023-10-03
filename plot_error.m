@@ -1,15 +1,17 @@
 function plot_error(h,e_conv,e_diff,fnc_tit)
 % plot_error plots the error
-
+%
 % Written by: Joel Campo, Jordi Gallart, Martí Santamaria, 2023
 % Group 16. AMVO. MUEA.
-
+%
 % Inputs:
-    % e_u_conv, e_v_conv, e_u_diff, e_v_diff: difference errors comparing
-    % the analytic and the numerical solutions of the convective and
-    % diffusive terms
+%   e_conv: difference errors comparing the analytic and the numerical 
+%   solutions of the convective term
+%   e_diff: difference errors comparing the analytic and the numerical 
+%   solutions of the diffusive term
+%   fnc_tit: title of the plot
 % Outputs:
-    % Plot of the error vs h
+%   Plot of the error vs h
 
 
 figure

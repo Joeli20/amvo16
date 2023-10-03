@@ -1,17 +1,17 @@
 function [u_conv,v_conv,u_diff,v_diff] = analytic(fnc_u,fnc_v,x,y)
 % analytic calculates the analytic results
-
+%
 % Written by: Joel Campo, Jordi Gallart, Martí Santamaria, 2023
 % Group 16. AMVO. MUEA.
-
+%
 % Inputs:
-    % fnc_u, fnc_v: Input functions to calculate
-    % x, y: Symbolic parameters
+%   fnc_u, fnc_v: Input functions to calculate
+%   x, y: Symbolic parameters
 % Outputs:
-    % u_conv, v_conv, u_diff, v_diff: analytic results of
-    % convective and diffusive terms
+%   u_conv, v_conv, u_diff, v_diff: analytic results of
+%   convective and diffusive terms
 
-% Diapos 7-8
+% NS2 Slides 7-8
 % convective
 u_conv = diff(fnc_u*fnc_u,x)+diff(fnc_u*fnc_v,y);
 v_conv = diff(fnc_v*fnc_u,x)+diff(fnc_v*fnc_v,y);

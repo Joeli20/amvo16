@@ -1,14 +1,14 @@
 function [gx,gy] = gradient(s,L)
 % gradient calculates the gradient of the input scalar field.
-
+%
 % Written by: Joel Campo, Jordi Gallart, Martí Santamaria, 2023
 % Group 16. AMVO. MUEA.
-
+%
 % Inputs:
-    % s: scalar field
-    % L: length of a side of the analysed square
+%   s: scalar field
+%   L: length of a side of the analysed square
 % Outputs:
-    % gx, gy: are the gradients in each direction
+%   gx, gy: are the gradients in each direction
 
 N = size(s,1) - 2;
 delta = L/N;

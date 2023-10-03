@@ -1,13 +1,13 @@
 function [b] = field2vector(d)
-% gradient calculates the gradient of the input scalar field.
-
+% field2vector transforms the matrix into a vector
+%
 % Written by: Joel Campo, Jordi Gallart, Martí Santamaria, 2023
 % Group 16. AMVO. MUEA.
-
+%
 % Inputs:
-    % d: scalar field d(N+2,N+2) -> Must be square
+%   d: scalar field d(N+2,N+2) -> Must be square
 % Outputs:
-    % b: algebraic vector b(N*N)
+%   b: algebraic vector b(N*N)
 
 N = size(d,1) - 2;
 
