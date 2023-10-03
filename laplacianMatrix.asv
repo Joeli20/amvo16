@@ -26,9 +26,22 @@ for i = 2:N+1
         A(a(i,j),w_n) = 1;
         A(a(i,j),n_n) = 1;
         A(a(i,j),s_n) = 1;
-        A(a(i,j),a(i,j)) = -4;
+        if a(i,j) == 1
+            A(a(i,j),)
+        else
+            A(a(i,j),a(i,j)) = -4;
+        end
     end
 end
-A(1,1) = -5;
+
+% Comprobem que sigui una matriu singular
+for i = 1:N^2
+    if sum(A(i,:)) ~= 0
+        error('The matrix is not singular')
+    end
+    if sum(A(:,j)) ~= 0
+        error('The matrix is not singular')
+    end
+end
 
 end
