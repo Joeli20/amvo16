@@ -23,7 +23,7 @@ h = L/N;
 u = halo_update(u);
 v = halo_update(v);
 
-% Analytic (Diapos 7-8)
+% Analytic (NS2 Slides 7-8)
 [u_conv,v_conv,u_diff,v_diff] = analytic(f_u,f_v,x,y);
 
 [u_conv_an,v_conv_an] = set_velocity_field(N,L,u_conv,v_conv);
@@ -40,7 +40,9 @@ v = halo_update(v);
 
 end
 
+% h vector creation
 h = L./n;
+
 % Plot error
 plot_error(h,e_u_conv,e_u_diff,'Horitzontal velocity')
 plot_error(h,e_v_conv,e_v_diff, 'Vertical velocity')

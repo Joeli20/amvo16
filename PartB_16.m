@@ -4,8 +4,9 @@
 %
 % Part B main
 
-clc ; clear all ; close all ;
+clc ; clear; close;
 
+% Initialization
 syms x y
 L = 1;
 f_u = cos(2*pi*x)*sin(2*pi*y);
@@ -21,40 +22,26 @@ h = L/N;
 u = halo_update(u);
 v = halo_update(v);
 
-%Divergencia velocitat
+% Velocity divergence
+div_u = diverg(u,v,L);
 
-Div_U = diverg(u,v,L);
+% Field2Vector
+vector_u = field2vector(div_u);
 
-%Fieldtovector
-
-Vector_U = field2vector(Div_U);
-
-%Use equation Ap = b where A is the laplacian Matrix
-
+% Equation A*p = b where A is the laplacian Matrix
 Laplace = laplacianMatrix(N);
 
-P_vector = Laplace^(-1).*Vector_U;
+p_vector = Laplace^(-1).*vector_u;
 
-%Then vector to field in order to have the new P
+% Vector2Field to obtaint the new P
+p_field = vector2field(p_vector);
 
-P_field = vector2field(P_vector);
+% New P gradient
+[px,py] = gradient(p_field,L);
 
-%gradient de la nova P
+% Equation u^n+1 = u^p - divP
+new_xu = u - px;
+new_xv = v - py;
 
-[Px,Py] = gradient(P_field,L);
-
-%Equation u^n+1=u^p-divP
-
-New_Ux = u - Px;
-New_Vx= v - Py;
-
-%New U^n+1 must fulfill the continuity equation
-
-New_div_U = diverg(New_Ux,New_Vx,L);
-
-
-
-
-
-
-% Diapo 52
+% New U^n+1 -> Must fulfill the continuity equation
+new_div_U = diverg(new_xu,new_xv,L);
