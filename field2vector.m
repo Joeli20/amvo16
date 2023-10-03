@@ -11,14 +11,14 @@ function [b] = field2vector(d)
 
 N = size(d,1) - 2;
 
-b = zeros(1,N*N);
+b = zeros(N*N,1);
 
 k = 1;
 
 for i = 2:N+1
     for j = 2:N+1
 
-        b(k) = d(i,j);
+        b(k,1) = d(i,j);
         k = k + 1;
 
     end

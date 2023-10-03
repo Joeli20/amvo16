@@ -31,7 +31,7 @@ vector_u = field2vector(div_u);
 % Equation A*p = b where A is the laplacian Matrix
 Laplace = laplacianMatrix(N);
 
-p_vector = Laplace^(-1).*vector_u;
+p_vector = Laplace^(-1)*vector_u;
 
 % Vector2Field to obtaint the new P
 p_field = vector2field(p_vector);
