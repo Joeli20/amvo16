@@ -4,7 +4,7 @@
 
 % Main de la part A
 
-clc ; clear all ; close all ;
+clc; clear; close;
 
 syms x y
 L = 1;
@@ -42,5 +42,5 @@ end
 
 h = L./n;
 % Plot error
-plot_error(h,e_u_conv,e_u_diff)
-plot_error(h,e_v_conv,e_v_diff)
+plot_error(h,e_u_conv,e_u_diff,'Horitzontal velocity')
+plot_error(h,e_v_conv,e_v_diff, 'Vertical velocity')

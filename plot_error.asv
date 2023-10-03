@@ -1,4 +1,4 @@
-function plot_error(h,e_conv,e_diff,fnc_tit)
+function plot_error(h,e_conv,e_diff)
 % plot_error plots the error
 
 % Written by: Joel Campo, Jordi Gallart, Martí Santamaria, 2023
@@ -11,11 +11,10 @@ function plot_error(h,e_conv,e_diff,fnc_tit)
 % Outputs:
     % Plot of the error vs h
 
-
 figure
 loglog(h,e_conv,Color='blue',Marker='o')
 hold on
 loglog(h,e_diff,Color='red',Marker='o')
 loglog(h,h.^2,Color='black')
 legend('Convective Term', 'Diffusive Term' , 'h^2')
-title(fnc_tit)
+title()
