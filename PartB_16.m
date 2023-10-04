@@ -36,8 +36,13 @@ p_vector = Laplace^(-1)*vector_u;
 % Vector2Field to obtaint the new P
 p_field = vector2field(p_vector);
 
+p_field = halo_update(p_field);
+
 % New P gradient
 [px,py] = gradient(p_field,L);
+
+px = halo_update(px);
+py = halo_update(py);
 
 % Equation u^n+1 = u^p - divP
 new_xu = u - px;
