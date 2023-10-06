@@ -11,15 +11,15 @@ function [gx,gy] = gradient(s,L)
 %   gx, gy: are the gradients in each direction
 
 N = size(s,1) - 2;
-delta = L/N;
+h = L/N;
 
 gx = zeros(N+2,N+2);
 gy = zeros(N+2,N+2);
 
 for j = 2:N+1
     for i = 2:N+1
-        gx(i,j) = (s(i+1,j) - s(i,j))/delta;
-        gy(i,j) = (s(i,j+1) - s(i,j))/delta;
+        gx(i,j) = (s(i+1,j) - s(i,j))/h;
+        gy(i,j) = (s(i,j+1) - s(i,j))/h;
     end
 end
 
