@@ -10,7 +10,7 @@ syms x y
 L = 1;
 f_u = cos(2*pi*x)*sin(2*pi*y);
 f_v = -sin(2*pi*x)*cos(2*pi*y);
-n = [8,16,32,64,128];
+n = [3,16,32,64,128];
 
 for i = 1:length(n)
 N = n(i);
@@ -29,14 +29,19 @@ v = halo_update(v);
 [u_conv_an,v_conv_an] = set_velocity_field(N,L,u_conv,v_conv);
 [u_diff_an,v_diff_an] = set_velocity_field(N,L,u_diff,v_diff);
 
+print_field(v_diff_an,'analytic','%+.1e ')
+
 % Numeric solution
 [u_conv_num,v_conv_num] = convective(u,v,L);
 [u_diff_num,v_diff_num] = diffusive(u,v);
 
+print_field(v_diff_num,'numerical','%+.1e ')
+
 % Error
-[e_u_conv(i),e_v_conv(i),e_u_diff(i),e_v_diff(i)] = d_error(h,u_conv_an, ...
-    v_conv_an,u_diff_an,v_diff_an,u_conv_num,v_conv_num,u_diff_num, ...
-    v_diff_num);
+[e_u_conv(i)] = d_error(u_conv_an,u_conv_num);
+[e_u_diff(i)] = d_error(u_diff_an,u_diff_num);
+[e_v_conv(i)] = d_error(v_conv_an,v_conv_num);
+[e_v_diff(i)] = d_error(v_diff_an,v_diff_num);
 
 end
 
