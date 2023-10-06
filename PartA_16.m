@@ -10,14 +10,22 @@ syms x y
 L = 1;
 f_u = cos(2*pi*x)*sin(2*pi*y);
 f_v = -sin(2*pi*x)*cos(2*pi*y);
-n = [3,16,32,64,128];
+n = [8,16,32,64,128];
+
+% Preallocating for speed
+h = zeros(size(n));
+e_u_conv = zeros(size(n));
+e_v_conv = zeros(size(n));
+e_u_diff = zeros(size(n));
+e_v_diff = zeros(size(n));
+
 
 for i = 1:length(n)
 N = n(i);
-h = L/N;
+h(i) = L/N;
 
 % Velocity field
-[u,v] = set_velocity_field(N,L,f_u,f_v);
+[u,v] = set_velocity_field(h,N,f_u,f_v);
 
 % Halo update
 u = halo_update(u);
@@ -26,16 +34,23 @@ v = halo_update(v);
 % Analytic (NS2 Slides 7-8)
 [u_conv,v_conv,u_diff,v_diff] = analytic(f_u,f_v,x,y);
 
-[u_conv_an,v_conv_an] = set_velocity_field(N,L,u_conv,v_conv);
-[u_diff_an,v_diff_an] = set_velocity_field(N,L,u_diff,v_diff);
+[u_conv_an,v_conv_an] = set_velocity_field(h,N,u_conv,v_conv);
+[u_diff_an,v_diff_an] = set_velocity_field(h,N,u_diff,v_diff);
 
-print_field(v_diff_an,'analytic','%+.1e ')
+% u_conv_an = halo_update(u_conv_an);
+% v_conv_an = halo_update(v_conv_an);
+% u_diff_an = halo_update(u_diff_an);
+% v_diff_an = halo_update(v_diff_an);
 
 % Numeric solution
 [u_conv_num,v_conv_num] = convective(u,v,L);
 [u_diff_num,v_diff_num] = diffusive(u,v);
 
-print_field(v_diff_num,'numerical','%+.1e ')
+% Halo update
+% u_conv_num = halo_update(u_conv_num);
+% v_conv_num = halo_update(v_conv_num);
+% u_diff_num = halo_update(u_diff_num);
+% v_diff_num = halo_update(v_diff_num);
 
 % Error
 [e_u_conv(i)] = d_error(u_conv_an,u_conv_num);
@@ -44,9 +59,6 @@ print_field(v_diff_num,'numerical','%+.1e ')
 [e_v_diff(i)] = d_error(v_diff_an,v_diff_num);
 
 end
-
-% h vector creation
-h = L./n;
 
 % Plot error
 plot_error(h,e_u_conv,e_u_diff,'Horitzontal velocity')

@@ -13,8 +13,8 @@ function [u_conv,v_conv,u_diff,v_diff] = analytic(fnc_u,fnc_v,x,y)
 
 % NS2 Slides 7-8
 % convective
-u_conv = (diff(fnc_u,x)+diff(fnc_v,y))*fnc_u;
-v_conv = (diff(fnc_u,x)+diff(fnc_v,y))*fnc_v;
+u_conv = (diff(fnc_u,x) + diff(fnc_v,y))*fnc_u;
+v_conv = (diff(fnc_u,x) + diff(fnc_v,y))*fnc_v;
 % diffusive
 u_diff = diff(fnc_u,x,x) + diff(fnc_u,y,y); % d^2(u)/dx^2
 v_diff = diff(fnc_v,x,x) + diff(fnc_v,y,y); % d^2(v)/dx^2
