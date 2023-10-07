@@ -4,12 +4,12 @@
 %
 % Part A main
 
-clc; clear; close;
+clc; clear; close all;
 
 syms x y
 L = 1;
 f_u = cos(2*pi*x)*sin(2*pi*y);
-f_v = -sin(2*pi*x)*cos(2*pi*y);
+f_v = - sin(2*pi*x)*cos(2*pi*y);
 n = [8,16,32,64,128];
 
 % Preallocating for speed

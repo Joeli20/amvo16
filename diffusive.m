@@ -35,10 +35,10 @@ for i = 2:N+1
                                                          % the volume 
                                                          % simplification
 
-        v_e = u(i+1,j) - u(i,j);
-        v_w = u(i,j) - u(i-1,j);
-        v_n = u(i,j+1) - u(i,j);
-        v_s = u(i,j) - u(i,j-1);
+        v_e = v(i+1,j) - v(i,j);
+        v_w = v(i,j) - v(i-1,j);
+        v_n = v(i,j+1) - v(i,j);
+        v_s = v(i,j) - v(i,j-1);
         
         v_diff_num(i,j) = (v_e - v_w + v_n - v_s)*(N^2);
 
