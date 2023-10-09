@@ -17,7 +17,7 @@ u_conv = (diff(fnc_u,x) + diff(fnc_v,y))*fnc_u;
 v_conv = (diff(fnc_u,x) + diff(fnc_v,y))*fnc_v;
 % diffusive
 u_diff = diff(fnc_u,x,x) + diff(fnc_u,y,y); % d^2(u)/dx^2
-v_diff = diff(fnc_v,y,y) + diff(fnc_v,x,x); % d^2(v)/dx^2
+v_diff = diff(fnc_v,x,x) + diff(fnc_v,y,y))*; % d^2(v)/dx^2
 
 disp(v_diff);
 end

@@ -25,18 +25,23 @@ for i = 2:N+1
         % it's the same distance in our case.
 
         % NS2 Slide 16
-        du_e = u(i+1,j) - u(i,j);
-        du_w = u(i,j) - u(i-1,j);
-        du_n = u(i,j+1) - u(i,j);
-        du_s = u(i,j) - u(i,j-1);
-        
-        dv_e = v(i+1,j) - v(i,j);
-        dv_w = v(i,j) - v(i-1,j);
-        dv_n = v(i,j+1) - v(i,j);
-        dv_s = v(i,j) - v(i,j-1);
 
-        u_diff_num(i,j) = du_e - du_w + du_n - du_s;
-        v_diff_num(i,j) = dv_e - dv_w + dv_n - dv_s;
+        u_e = u(i+1,j) - u(i,j);
+        u_w = u(i,j) - u(i-1,j);
+        u_n = u(i,j+1) - u(i,j);
+        u_s = u(i,j) - u(i,j-1);
+        
+        u_diff_num(i,j) = (u_e - u_w + u_n - u_s)*(N^2); % N^2 Appears for 
+                                                         % the volume 
+                                                         % simplification
+
+        v_e = v(i+1,j) - v(i,j);
+        v_w = v(i,j) - v(i-1,j);
+        v_n = v(i,j+1) - v(i,j);
+        v_s = v(i,j) - v(i,j-1);
+        
+        v_diff_num(i,j) = (v_e - v_w + v_n - v_s)*(N^2);
+
     end 
 end 
 
