@@ -10,7 +10,7 @@ syms x y
 L = 1;
 f_u = cos(2*pi*x)*sin(2*pi*y);
 f_v = - sin(2*pi*x)*cos(2*pi*y);
-n = [8,16,32,64,128];
+n = [32,64,128,256,512];
 
 % Preallocating for speed
 h = zeros(size(n));
