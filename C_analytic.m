@@ -12,11 +12,10 @@ function [u_an,v_an,p_an] = C_analytic(f_u,f_v,x,y,L,N,t,k)
 % Outputs:
 %   u_an,v_an,p_an: analytic solutions of the u, v and p distributions
 
-% Diapo 58
-
+% NS2 Slide 58
 rho = 1;
 Re = 100;
-visc = 1*L/Re; % viscositat cinemàtica
+visc = 1*L/Re; %Cinematic viscosity
 
 F = exp(-8*pi^2*visc*t(k));
 f_u_an = F*f_u;
@@ -25,5 +24,3 @@ f_p_an = -rho*F^2*(cos(2*pi*x)^2/2+cos(2*pi*y)^2/2);
 
 [u_an,v_an] = set_velocity_field(N,L,f_u_an,f_v_an);
 [p_an] = set_pressure_field(N,L,f_p_an);
-
-% t(k), ve del time step, i F potser s'haurien de posar a fora?

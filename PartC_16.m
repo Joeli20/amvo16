@@ -58,7 +58,7 @@ new_u = u_0 - px_0;
 new_v = v_0 - py_0;
 
 % New U^n+1 -> Must fulfill the continuity equation
-new_div_U = diverg(new_u,new_v,L)
+new_div_U = diverg(new_u,new_v,L);
 
 %Calculs time_step
 

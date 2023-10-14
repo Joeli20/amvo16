@@ -11,6 +11,7 @@ function [error] = d_error(analytic,numeric)
 %   error: error comparing the analytic and the numerical solutions
 
 % M = max(X,[],"all") returns the largest element of X. (from help max)
+
 error = max(abs(analytic - numeric),[],"all");
 
 end
