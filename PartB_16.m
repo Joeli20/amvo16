@@ -17,11 +17,11 @@ v(3,5) = 1;
 h = L/N;
 
 % Funcions amb continuitat
-f_u = cos(2*pi*x)*sin(2*pi*y);
-f_v = - sin(2*pi*x)*cos(2*pi*y);
+%f_u = cos(2*pi*x)*sin(2*pi*y);
+%f_v = - sin(2*pi*x)*cos(2*pi*y);
 
 % Velocity field
-[u,v] = set_velocity_field(N,L,f_u,f_v);
+%[u,v] = set_velocity_field(N,L,f_u,f_v);
 
 
 % Halo update

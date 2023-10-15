@@ -4,7 +4,7 @@
 %
 % Part A main
 
-clc; clear; close all;
+clc; clear; close;
 
 syms x y
 L = 1;

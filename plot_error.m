@@ -21,3 +21,4 @@ loglog(h,e_diff,Color='red',Marker='o')
 loglog(h,h.^2,Color='black')
 legend('Convective Term', 'Diffusive Term' , 'h^2')
 title(fnc_tit)
+end

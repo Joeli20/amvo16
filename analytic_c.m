@@ -13,7 +13,6 @@ function [u_an,v_an,p_an] = analytic_c(f_u,f_v,x,y,L,N,t,visc)
 %   u_an,v_an,p_an: analytic solutions of the u, v and p distributions
 
 % NS Slide 58
-
 rho = 1;
 
 F = exp(-8*pi^2*visc*t);
@@ -23,3 +22,4 @@ f_p_an = -rho*F^2*(cos(2*pi*x)^2/2+cos(2*pi*y)^2/2);
 
 [u_an,v_an] = set_velocity_field(N,L,f_u_an,f_v_an);
 [p_an] = set_pressure_field(N,L,f_p_an);
+end
