@@ -3,17 +3,16 @@
 % Joel Campo, Jordi Gallart, Martí Santamaria
 %
 % Part C main
-
-clc ; clear; close;
-
+%
 % VERY IMPORTANT --> READ BEFORE USE
 % This script outputs two different plots that have to be selected.
-%In order to obtain the first plot, mesh convergence using error, use the
-%current script as it is.
-%If the user wants to obtain the plot that compares analytic and numeric in
-%one particular position vs the time, change the comments in variable n and
-%in the plots. The changes are also explained in the script.
+% In order to obtain the first plot, mesh convergence using error, use the
+% current script as it is.
+% If the user wants to obtain the plot that compares analytic and numeric 
+% in one particular position vs the time, change the comments in variable 
+% n and in the plots. The changes are also explained in the script.
 
+clc ; clear; close;
 
 % Initialization
 syms x y
@@ -22,7 +21,7 @@ f_v = -cos(2*pi*y)*sin(2*pi*x);
 
 %THE FOLLOWING PARAMETERS DEFINE THE USE OF THE SCRIPT, CHANGE DE COMMENT
 %IF DESIRED.
-n=[10,20,50]; %Number of control volumes. (PLOT 1)
+n = [10,20,50]; %Number of control volumes. (PLOT 1)
 %n=[10]   Control volume used for convergence calculation (PLOT 2)
 
 
@@ -30,13 +29,13 @@ error_u = zeros(length(n),1);
 error_v = zeros(length(n),1);
 
 for i = 1:length(n)
-N=n(i);
+N = n(i);
 
-L=1; %Dimension of the problem.
-h=L/N; %Control volum length and height. 
+L = 1; %Dimension of the problem.
+h = L/N; %Control volum length and height. 
 rho = 1; %Density equal to 1. Will not change --> incompressible
 f = 0.2; %Relaxation constant in order to help convergence of the problem. Value has to be between 0.2 and 0.5
-H(i)=h;
+H(i) = h;
 Laplace = laplacianMatrix(N); %Laplace matrix
 
 
@@ -90,7 +89,7 @@ u_test = zeros(N+2,N+2,n_iter_max_int-1);%A matrix is created in order to be abl
 while n_iter<n_iter_max_int
 
     %Analytic part
-    [u_an,v_an,p_an] = analytic_c(f_u,f_v,x,y,L,N,t,n_iter,visc);
+    [u_an,v_an,p_an] = analytic_c(f_u,f_v,x,y,L,N,t,visc);
 
     u_an=halo_update(u_an);
     v_an=halo_update(v_an);
