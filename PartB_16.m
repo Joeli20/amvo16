@@ -9,14 +9,13 @@ clc ; clear; close;
 % Initialization
 syms x y
 L = 1;
-f_u = cos(2*pi*x)*sin(2*pi*y);
-f_v = -sin(2*pi*x)*cos(2*pi*y);
 N = 8;
-
+u = zeros(N+2,N+2);
+v = zeros(N+2,N+2);
+u(5,5)=1;
+v(5,5)=1;
 h = L/N;
 
-% Velocity field
-[u,v] = set_velocity_field(N,L,f_u,f_v);
 
 % Halo update
 u = halo_update(u);
