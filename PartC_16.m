@@ -71,7 +71,7 @@ time = zeros(n_iter_max_int-1,1);
 while n_iter<n_iter_max_int
 
     %Analytic part
-    [u_an,v_an,p_an] = C_analytic(f_u,f_v,x,y,L,N,t,n_iter,visc);
+    [u_an,v_an,p_an] = analytic_c(f_u,f_v,x,y,L,N,t,n_iter,visc);
 
     %Numerical part
     [u_conv_num,v_conv_num] = convective(u_0,v_0,L); %Convective calculation

@@ -11,7 +11,7 @@ syms x y
 L = 1;
 f_u = cos(2*pi*x)*sin(2*pi*y);
 f_v = -sin(2*pi*x)*cos(2*pi*y);
-N = 3;
+N = 8;
 
 h = L/N;
 
