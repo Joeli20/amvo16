@@ -6,17 +6,37 @@
 
 clc ; clear; close;
 
+% VERY IMPORTANT --> READ BEFORE USE
+% This script outputs two different plots that have to be selected.
+%In order to obtain the first plot, mesh convergence using error, use the
+%current script as it is.
+%If the user wants to obtain the plot that compares analytic and numeric in
+%one particular position vs the time, change the comments in variable n and
+%in the plots. The changes are also explained in the script.
+
+
 % Initialization
 syms x y
 f_u = cos(2*pi*x)*sin(2*pi*y);
 f_v = -cos(2*pi*y)*sin(2*pi*x);
 
-N=10; %Number of control volumes. IMPORTANT, if N is decreased, then f has to be increased, maximum 0.5.
+%THE FOLLOWING PARAMETERS DEFINE THE USE OF THE SCRIPT, CHANGE DE COMMENT
+%IF DESIRED.
+n=[10,20,50]; %Number of control volumes. (PLOT 1)
+%n=[10]   Control volume used for convergence calculation (PLOT 2)
+
+
+error_u = zeros(length(n),1);
+error_v = zeros(length(n),1);
+
+for i = 1:length(n)
+N=n(i);
+
 L=1; %Dimension of the problem.
 h=L/N; %Control volum length and height. 
 rho = 1; %Density equal to 1. Will not change --> incompressible
 f = 0.2; %Relaxation constant in order to help convergence of the problem. Value has to be between 0.2 and 0.5
-
+H(i)=h;
 Laplace = laplacianMatrix(N); %Laplace matrix
 
 
@@ -65,13 +85,15 @@ n_iter_max=3/time_step; %The simulated time is defined as 3 segons. It can be ch
 n_iter_max_int = round(n_iter_max,0);
 %Initialization of some matrix.
 u_test = zeros(N+2,N+2,n_iter_max_int-1);%A matrix is created in order to be able to save all the horizontal velocities.
-time = zeros(n_iter_max_int-1,1);
 
 %Bucle used for the calculation
 while n_iter<n_iter_max_int
 
     %Analytic part
     [u_an,v_an,p_an] = analytic_c(f_u,f_v,x,y,L,N,t,n_iter,visc);
+
+    u_an=halo_update(u_an);
+    v_an=halo_update(v_an);
 
     %Numerical part
     [u_conv_num,v_conv_num] = convective(u_0,v_0,L); %Convective calculation
@@ -132,6 +154,17 @@ while n_iter<n_iter_max_int
 
     P_new_real = halo_update(P_new_real);
 
+
+    % Error
+    [e_u(i)] = d_error(u_an,new_u);
+    [e_v(i)] = d_error(v_an,new_v);
+    if e_u(i) > error_u(i)
+        error_u(i)=e_u(i);
+    end
+    if e_v(i) > error_v(i)
+        error_v(i)=e_v(i);
+    end
+
     %The calculations are finished. Modifying of the variables for the
     %following time step.
 
@@ -141,17 +174,17 @@ while n_iter<n_iter_max_int
     v_0 = new_v;
 
     %Storing the data needed
-    u_tres_tres(n_iter)=new_u(3,3);
-    v_tres_tres(n_iter)=new_v(3,3);
-    u_tres_tres_an(n_iter)=u_an(3,3);
-    v_tres_tres_an(n_iter)=v_an(3,3);
+    u_tres_tres(n_iter,i)=new_u(3,3);
+    v_tres_tres(n_iter,i)=new_v(3,3);
+    u_tres_tres_an(n_iter,i)=u_an(3,3);
+    v_tres_tres_an(n_iter,i)=v_an(3,3);
     u_test(:,:,n_iter) = new_u;
 
     %Storing time
-    if n_iter ==1
-        time(n_iter)=time_step;
+    if n_iter == 1
+        time(n_iter,i)=time_step;
     else
-        time(n_iter)=time(n_iter-1)+time_step;
+        time(n_iter,i)=time(n_iter-1)+time_step;
     end
 
     %Upgrading bucle variables and time step
@@ -159,15 +192,27 @@ while n_iter<n_iter_max_int
     n_iter=n_iter+1;
     
 end
+end
 
-%Plot in order to see the variation of the simulation in accordance with the time.
-plot(time,u_tres_tres)
+%CHANGE THE COMMENTS IN ORDER TO CHANGE THE PLOTS OBTAINED IN EACH CASE
+
+% Plot error (PLOT 1)
+figure
+loglog(H,error_u,Color='blue',Marker='o')
 hold on
-grid on
-plot(time,v_tres_tres)
-plot(time,u_tres_tres_an)
-plot(time,v_tres_tres_an)
-legend('u_n','v_n','u_a','v_a')
-title('Plot of the numerical and analytical velocities vs time')
-xlabel('Time (s)')
-ylabel('Velocities (m/s)')
+loglog(H,H.^2,Color='black')
+legend('Horizontal velocity', 'h^2')
+
+%(PLOT 2)
+%plot that compares analytic and numeric in one particular position vs the time.
+%nexttile
+%plot(time(:,1),u_tres_tres(:,1))
+%hold on
+%grid on
+%plot(time(:,1),v_tres_tres(:,1))
+%plot(time(:,1),u_tres_tres_an(:,1))
+%plot(time(:,1),v_tres_tres_an(:,1))
+%legend('u_n','v_n','u_a','v_a')
+%title('Plot of the numerical and analytical velocities vs time N=10')
+%xlabel('Time (s)')
+%ylabel('Velocities (m/s)')
